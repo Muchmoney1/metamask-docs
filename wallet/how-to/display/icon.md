@@ -1,6 +1,5 @@
 ---
 description: Set an icon on MetaMask for your dapp.
-sidebar_position: 3
 ---
 
 # Display a dapp icon
@@ -16,6 +15,6 @@ The tag's `href` attribute is used for assigning the dapp icon.
 
 ```html
 <head>
-    <link rel="shortcut icon" href="https://your-dapp.com/your-icon.png" />
+  <link rel="shortcut icon" href="https://your-dapp.com/your-icon.png" />
 </head>
 ```

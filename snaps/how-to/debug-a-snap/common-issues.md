@@ -3,8 +3,8 @@ description: Solve common issues.
 sidebar_position: 1
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 # Troubleshoot common issues
 
@@ -34,7 +34,7 @@ If the problem is in a dependency, you can try a different version or to fix the
 using tools such as [`patch-package`](https://npmjs.com/package/patch-package) (see how to
 [patch dependencies](#patch-dependencies)) or by modifying the bundle file directly.
 
-To give you an idea of a common error and how to fix it, "sloppily" declared variables (i.e.
+To give you an idea of a common error and how to fix it, "sloppily" declared variables (that is,
 assigning to a new variable without an explicit variable declaration) are forbidden in strict mode,
 and therefore in SES as well.
 If you get an error during the `eval` step that says something like `variableName is not defined`,
@@ -45,7 +45,7 @@ simply prepending `var variableName;` to your Snap bundle may solve the problem.
 :::caution
 Run [`yarn mm-snap manifest --fix`](../../reference/cli/subcommands.md#m-manifest) if you modified
 your Snap bundle after building.
-Otherwise your manifest `shasum` value won't be correct, and attempting to install your Snap fails.
+Otherwise, your manifest `shasum` value won't be correct, and attempting to install your Snap fails.
 :::
 
 ### Use other build tools
@@ -57,8 +57,8 @@ plugins for several other build systems:
 - [Rollup](https://www.npmjs.com/package/@metamask/rollup-plugin-snaps)
 - [Browserify](https://www.npmjs.com/package/@metamask/snaps-browserify-plugin)
 
-For examples on how to set up these build systems yourself, please see the
-[examples](https://github.com/MetaMask/snaps-monorepo/tree/main/packages/examples/examples).
+For examples on how to set up these build systems yourself, see the
+[examples](https://github.com/MetaMask/snaps/tree/main/packages/examples).
 
 We recommend running [`yarn mm-snap manifest --fix`](../../reference/cli/subcommands.md#m-manifest)
 after creating your bundle to make sure your manifest `shasum` value is correct.
@@ -85,7 +85,7 @@ yarn add -D patch-package postinstall-postinstall
 
 Then add a postinstall script to your `package.json`:
 
-```diff
+```diff title="package.json"
  "scripts": {
 +  "postinstall": "patch-package"
  }
@@ -96,7 +96,7 @@ Now you can make changes to your dependencies inside `node_modules` and run
 This creates a `.patch` file containing your dependency patch.
 These patches can be committed to your Git repository and are replayed when you re-install your dependencies.
 
-### Patch the use of XMLHttpRequest
+### Patch the use of `XMLHttpRequest`
 
 The `XMLHttpRequest` API is not exposed in the Snaps execution environment and won't be in the future.
 Because of this, you may run into issues with dependencies in your dependency tree attempting to
@@ -106,29 +106,29 @@ The following are examples of popular libraries that use `XMLHttpRequest` and ar
 compatible with the Snaps execution environment.
 This section also describes patching strategies for fixing dependencies that try to use these libraries.
 
-#### cross-fetch
+#### `cross-fetch`
 
 `cross-fetch` is a popular library used for cross-platform access to the `fetch` API across multiple
 environments.
 Under the hood, however, the library uses `XMLHttpRequest` and thus causes issues when used in a Snap.
 
-You can easily patch this issue using `patch-package`.
+You can patch this issue using `patch-package`.
 Open `node_modules/cross-fetch/browser-ponyfill.js` and find the following lines near the bottom of
 the file:
 
-```javascript
+```javascript title="browser-ponyfill.js"
 // Choose between native implementation (global) or custom implementation (__self__)
 // var ctx = global.fetch ? global : __self__;
-var ctx = __self__; // this line disable service worker support temporarily
+var ctx = __self__ // this line disable service worker support temporarily
 ```
 
 You can replace that with the following snippet:
 
-```javascript
+```javascript title="browser-ponyfill.js"
 // Choose between native implementation (global) or custom implementation (__self__)
 var ctx = global.fetch
   ? { ...global, fetch: global.fetch.bind(global) }
-  : __self__;
+  : __self__
 // var ctx = __self__; // this line disable service worker support temporarily
 ```
 
@@ -158,7 +158,7 @@ index f216aa3..6b3263b 100644
 Using either of these methods allows your dependencies to access the `fetch` API correctly and
 `cross-fetch` compatible with the Snaps execution environment.
 
-#### axios
+#### `axios`
 
 `axios` is a popular networking library that uses `XMLHttpRequest` under the hood.
 
@@ -177,38 +177,38 @@ In a production environment this may be a large task depending on the usage of `
 
 ```javascript
 const instance = axios.create({
-  baseURL: 'https://api.github.com/',
-});
+  baseURL: "https://api.github.com/",
+})
 
 instance
-  .get('users/MetaMask')
+  .get("users/MetaMask")
   .then((res) => {
     if (res.status >= 400) {
-      throw new Error('Bad response from server');
+      throw new Error("Bad response from server")
     }
-    return res.data;
+    return res.data
   })
   .then((user) => {
-    console.log(user);
+    console.log(user)
   })
   .catch((err) => {
-    console.error(err);
-  });
+    console.error(err)
+  })
 ```
 
 </TabItem>
 <TabItem value="fetch">
 
 ```javascript
-fetch('https://api.github.com/users/MetaMask')
+fetch("https://api.github.com/users/MetaMask")
   .then((res) => {
     if (!res.ok) {
-      throw new Error('Bad response from server');
+      throw new Error("Bad response from server")
     }
-    return res.json();
+    return res.json()
   })
   .then((json) => console.log(json))
-  .catch((err) => console.error(err));
+  .catch((err) => console.error(err))
 ```
 
 </TabItem>

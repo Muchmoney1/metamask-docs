@@ -1,6 +1,6 @@
 ---
 description: Develop, test, and publish a Snap.
-sidebar_position: 6
+sidebar_position: 8
 ---
 
 # Publish a Snap
@@ -14,7 +14,7 @@ The following details are specific to Snaps:
 - The `repository.url` field in `package.json` should match the correct repository for your Snap.
 - The `source.location.npm.packageName` in `snap.manifest.json` should match the name in `package.json`.
 - The `proposedName` in `snap.manifest.json` should be a human-readable name and should not include
-  the words "MetaMask" or "Snap." 
+  the words "MetaMask" or "Snap."
 - The image specified in `iconPath` in the manifest file is used as the icon displayed when
   installing the Snap, in custom dialogs, and in the settings menu.
   - This icon should be a valid SVG.
@@ -24,18 +24,16 @@ After publishing the Snap, any dapp can connect to the Snap by using the Snap ID
 
 :::caution
 If you are using the Snap monorepo project generated in the [quickstart](../get-started/quickstart.md),
-make sure to only publish the Snap package in `/packages/snap`. 
-You can use the [Snaps Simulator](https://metamask.github.io/snaps/snaps-simulator/staging/#/manifest) to verify 
-that your Snap was published correctly &mdash; just select **localhost** in the top right corner and change the 
-Snap location to **npm** and the ID of your Snap. 
+make sure to only publish the Snap package in `/packages/snap`.
+You can use the [Snaps Simulator](https://metamask.github.io/snaps/snaps-simulator/staging/#/manifest) to verify
+that your Snap was published correctly &mdash; just select **localhost** in the top right corner and change the
+Snap location to **npm** and the ID of your Snap.
 
 Also, make sure to update the manifest file, icon file, and README to differentiate your Snap from the template.
 :::
 
-## Distribute your Snap
+## Make a Snap available to users
 
-You should deploy a companion dapp where users can learn about your Snap and install it, or
-integrate with your existing dapp.
-
-If your Snap is designed to communicate with dapps, you can encourage other dapp developers to
-[connect to your Snap](connect-to-a-snap.md).
+After publishing a Snap, you can make it available to MetaMask users by
+[getting your Snap allowlisted](get-allowlisted.md).
+Once allowlisted, anyone can install your Snap in the MetaMask extension.

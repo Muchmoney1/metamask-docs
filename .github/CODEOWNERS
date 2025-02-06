@@ -1,3 +1,21 @@
-* @MetaMask/tech-writers
+# This is a codeowners file. The last matching pattern takes precedence,
+# so the listed codeowners apply only if there is no later match.
+
+# Default owner for all other files
+* @MetaMask/dashboard @MetaMask/tech-writers
+
+# All other Markdown files
+*.md @MetaMask/tech-writers
+*.mdx @MetaMask/tech-writers
+
+# Developer tools documentation
+/developer-tools/ @MetaMask/tech-writers
+
+# Services documentation
+/services/ @MetaMask/tech-writers
+
+# Snaps documentation
 /snaps/ @MetaMask/tech-writers @MetaMask/snaps
-/wallet/ @MetaMask/tech-writers @MetaMask/dev-ex
+
+# Wallet and SDK documentation
+/wallet/ @MetaMask/tech-writers @MetaMask/wallet-api-platform-engineers @MetaMask/sdk-devs

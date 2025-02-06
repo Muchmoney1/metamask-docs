@@ -1,6 +1,5 @@
 ---
 sidebar_position: 1
-toc_max_heading_level: 2
 sidebar_label: Objects
 tags:
   - Keyring API
@@ -11,7 +10,7 @@ tags:
 [Account management Snaps](../../../features/custom-evm-accounts/index.md) use the following objects
 with the [Account Management API](index.md).
 
-## `KeyringAccount`
+### `KeyringAccount`
 
 An object representing an account with its properties and capabilities.
 An account object contains:
@@ -24,27 +23,27 @@ An account object contains:
   `"eip155:eoa"` for an externally owned account (EOA) or `"eip155:erc4337"` for an
   [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337) account.
 
-### Example
+#### Example
 
 ```json
 {
-    "address": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
-    "id": "091bbc2e-6625-44d0-ac5c-658670ca649a",
-    "methods": [
-        "eth_sign",
-        "eth_signTransaction",
-        "eth_signTypedData_v4",
-        "personal_sign"
-    ],
-    "options": {
-        "signerCount": 5,
-        "threshold": 3
-    },
-    "type": "eip155:eoa"
+  "address": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
+  "id": "091bbc2e-6625-44d0-ac5c-658670ca649a",
+  "methods": [
+    "eth_sign",
+    "eth_signTransaction",
+    "eth_signTypedData_v4",
+    "personal_sign"
+  ],
+  "options": {
+    "signerCount": 5,
+    "threshold": 3
+  },
+  "type": "eip155:eoa"
 }
 ```
 
-## `KeyringRequest`
+### `KeyringRequest`
 
 An object representing a request made to the account management Snap for account-related operations.
 A request object contains:
@@ -57,19 +56,19 @@ A request object contains:
 - `scope`: `string` - [CAIP-2](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-2.md)
   chain ID of the blockchain network for the request.
 
-### Example
+#### Example
 
 ```json
 {
-    "address": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
-    "id": "f84d3a97-b6e1-47ea-8b0c-fd8609efaad4",
-    "request": {
-        "method": "personal_sign",
-        "params": [
-            "0x4578616d706c652060706572736f6e616c5f7369676e60206d657373616765",
-            "0xe887f3b50232722e6eb4c1d3a03b34c9b345acd1"
-        ]
-    },
-    "scope": "eip155:1"
+  "address": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
+  "id": "f84d3a97-b6e1-47ea-8b0c-fd8609efaad4",
+  "request": {
+    "method": "personal_sign",
+    "params": [
+      "0x4578616d706c652060706572736f6e616c5f7369676e60206d657373616765",
+      "0xe887f3b50232722e6eb4c1d3a03b34c9b345acd1"
+    ]
+  },
+  "scope": "eip155:1"
 }
 ```

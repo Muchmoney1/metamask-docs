@@ -1,6 +1,6 @@
 ---
 description: Connect to custom EVM accounts using the Keyring API.
-sidebar_position: 4
+sidebar_position: 2
 tags:
   - Keyring API
 ---
@@ -13,7 +13,7 @@ accounts and [ERC-4337 accounts](#account-abstraction-erc-4337), alongside regul
 in the user interface:
 
 <p align="center">
-<img src={require('../../assets/keyring/accounts-ui.png').default} alt="Account management Snap accounts in Metamask UI" width="360" style={{border: '1px solid gray'}} />
+<img src={require('../../assets/keyring/accounts-ui.png').default} alt="Account management Snap accounts in MetaMask UI" width="360" style={{border: '1px solid #DCDCDC'}} />
 </p>
 
 To use the Keyring API, you first [implement the API in an account management Snap](create-account-snap.md)
@@ -22,11 +22,12 @@ You can then [call Keyring API methods from a companion dapp](create-companion-d
 to enable users to create and interact with the custom accounts.
 
 :::tip see also
+
 - [Create an account management Snap](create-account-snap.md)
 - [Create an account management companion dapp](create-companion-dapp.md)
 - [Account management Snap security guidelines](security.md)
 - [Keyring API reference](../../reference/keyring-api/index.md)
-:::
+  :::
 
 ## System context diagram
 
@@ -290,7 +291,7 @@ externally owned accounts (EOAs):
 :::
 
 Account abstraction, specified by [EIP-4337](https://eips.ethereum.org/EIPS/eip-4337), introduces
-*user operations* and enables users to manage smart contract accounts containing arbitrary
+_user operations_ and enables users to manage smart contract accounts containing arbitrary
 verification logic.
 Users can use these ERC-4337 accounts instead of externally owned accounts as primary accounts.
 

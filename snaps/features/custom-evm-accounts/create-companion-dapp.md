@@ -13,10 +13,11 @@ Call Keyring API methods from your companion dapp, enabling users to create and 
 EVM accounts.
 
 :::tip see also
+
 - [Custom EVM accounts](index.md)
 - [Create an account management Snap](create-account-snap.md)
 - [Keyring API reference](../../reference/keyring-api/index.md)
-:::
+  :::
 
 ## Prerequisites
 
@@ -44,10 +45,10 @@ npm install @metamask/keyring-api
 Create a `KeyringSnapRpcClient`:
 
 ```ts
-import { KeyringSnapRpcClient } from "@metamask/keyring-api";
-import { defaultSnapOrigin as snapId } from '../config';
+import { KeyringSnapRpcClient } from "@metamask/keyring-api"
+import { defaultSnapOrigin as snapId } from "../config"
 
-let client = new KeyringSnapRpcClient(snapId, window.ethereum);
+let client = new KeyringSnapRpcClient(snapId, window.ethereum)
 ```
 
 ### 3. Call Account Management API methods
@@ -55,10 +56,10 @@ let client = new KeyringSnapRpcClient(snapId, window.ethereum);
 You can now use the `KeyringSnapRpcClient` to invoke
 [Account Management API](../../reference/keyring-api/account-management/index.md) methods on your Snap.
 
-For example, to call [`keyring_listAccounts`](../../reference/keyring-api/account-management/index.md#keyringlist_accounts):
+For example, to call [`keyring_listAccounts`](../../reference/keyring-api/account-management/index.md#keyring_listaccounts):
 
 ```typescript
-const accounts = await client.listAccounts();
+const accounts = await client.listAccounts()
 ```
 
 ## Example

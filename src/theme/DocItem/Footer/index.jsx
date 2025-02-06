@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { ThemeClassNames } from "@docusaurus/theme-common";
-import { useDoc } from "@docusaurus/theme-common/internal";
+import { useDoc } from '@docusaurus/plugin-content-docs/client';
 import LastUpdated from "@theme/LastUpdated";
 import EditThisPage from "@theme/EditThisPage";
 import styles from "./styles.module.css";
@@ -38,7 +38,8 @@ export default function DocItemFooter() {
   }
   return (
     <footer
-      className={clsx(ThemeClassNames.docs.docFooter, "docusaurus-mt-lg")}>
+      className={clsx(ThemeClassNames.docs.docFooter, "docusaurus-mt-lg")}
+    >
       {canDisplayEditMetaRow && (
         <EditMetaRow
           editUrl={editUrl}

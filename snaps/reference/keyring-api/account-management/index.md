@@ -4,8 +4,8 @@ tags:
   - Keyring API
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 # Account Management API
 
@@ -39,13 +39,13 @@ An object containing:
 
 ```json
 {
-    "method": "keyring_createAccount",
-    "params": {
-        "options": {
-            "signerCount": 5,
-            "threshold": 3
-        }
+  "method": "keyring_createAccount",
+  "params": {
+    "options": {
+      "signerCount": 5,
+      "threshold": 3
     }
+  }
 }
 ```
 
@@ -54,19 +54,19 @@ An object containing:
 
 ```json
 {
-    "address": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
-    "id": "091bbc2e-6625-44d0-ac5c-658670ca649a",
-    "methods": [
-        "eth_sign",
-        "eth_signTransaction",
-        "eth_signTypedData_v4",
-        "personal_sign"
-    ],
-    "options": {
-        "signerCount": 5,
-        "threshold": 3
-    },
-    "type": "eip155:eoa"
+  "address": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
+  "id": "091bbc2e-6625-44d0-ac5c-658670ca649a",
+  "methods": [
+    "eth_sign",
+    "eth_signTransaction",
+    "eth_signTypedData_v4",
+    "personal_sign"
+  ],
+  "options": {
+    "signerCount": 5,
+    "threshold": 3
+  },
+  "type": "eip155:eoa"
 }
 ```
 
@@ -94,10 +94,10 @@ An object containing:
 
 ```json
 {
-    "method": "keyring_deleteAccount",
-    "params": {
-        "id": "091bbc2e-6625-44d0-ac5c-658670ca649a"
-    }
+  "method": "keyring_deleteAccount",
+  "params": {
+    "id": "091bbc2e-6625-44d0-ac5c-658670ca649a"
+  }
 }
 ```
 
@@ -113,8 +113,16 @@ null
 
 ### `keyring_exportAccount`
 
-Exports the private key of an account managed by the Snap.
-A Snap might choose to not support this method.
+Exports account data managed by the Snap.
+This might include the public key, address, or derivation path.
+The exact data exported depends on the Snap's implementation and security considerations.
+A Snap might choose to not support this method or limit the data it exports.
+
+:::warning
+
+This method can export private keys or any other sensitive data.
+
+:::
 
 #### Parameters
 
@@ -124,9 +132,7 @@ An object containing:
 
 #### Returns
 
-An object containing:
-
-- `privateKey`: `string` - The account's private key.
+An object containing the account data.
 
 #### Example
 
@@ -135,10 +141,10 @@ An object containing:
 
 ```json
 {
-    "method": "keyring_exportAccount",
-    "params": {
-        "id": "091bbc2e-6625-44d0-ac5c-658670ca649a"
-    }
+  "method": "keyring_exportAccount",
+  "params": {
+    "id": "091bbc2e-6625-44d0-ac5c-658670ca649a"
+  }
 }
 ```
 
@@ -147,7 +153,7 @@ An object containing:
 
 ```json
 {
-    "privateKey": "66a41d66be6483f1fdfd01fdb66173d449594bbd286149b019504dd72b58bc51"
+  "privateKey": "66a41d66be6483f1fdfd01fdb66173d449594bbd286149b019504dd72b58bc51"
 }
 ```
 
@@ -180,16 +186,11 @@ An object containing:
 
 ```json
 {
-    "method": "keyring_filterAccountChains",
-    "params": {
-        "id": "091bbc2e-6625-44d0-ac5c-658670ca649a",
-        "chains": [
-            "eip155:W", 
-            "eip155:X",
-            "eip155:Y",
-            "eip155:Z"
-        ]
-    }
+  "method": "keyring_filterAccountChains",
+  "params": {
+    "id": "091bbc2e-6625-44d0-ac5c-658670ca649a",
+    "chains": ["eip155:W", "eip155:X", "eip155:Y", "eip155:Z"]
+  }
 }
 ```
 
@@ -198,10 +199,7 @@ An object containing:
 
 ```json
 {
-    "chains": [
-        "eip155:X",
-        "eip155:Y"
-    ]
+  "chains": ["eip155:X", "eip155:Y"]
 }
 ```
 
@@ -229,10 +227,10 @@ An object containing:
 
 ```json
 {
-    "method": "keyring_getAccount",
-    "params": {
-        "id": "091bbc2e-6625-44d0-ac5c-658670ca649a"
-    }
+  "method": "keyring_getAccount",
+  "params": {
+    "id": "091bbc2e-6625-44d0-ac5c-658670ca649a"
+  }
 }
 ```
 
@@ -241,19 +239,19 @@ An object containing:
 
 ```json
 {
-    "address": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
-    "id": "091bbc2e-6625-44d0-ac5c-658670ca649a",
-    "methods": [
-        "eth_sign",
-        "eth_signTransaction",
-        "eth_signTypedData_v4",
-        "personal_sign"
-    ],
-    "options": {
-        "signerCount": 5,
-        "threshold": 3
-    },
-    "type": "eip155:eoa"
+  "address": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
+  "id": "091bbc2e-6625-44d0-ac5c-658670ca649a",
+  "methods": [
+    "eth_sign",
+    "eth_signTransaction",
+    "eth_signTypedData_v4",
+    "personal_sign"
+  ],
+  "options": {
+    "signerCount": 5,
+    "threshold": 3
+  },
+  "type": "eip155:eoa"
 }
 ```
 
@@ -279,7 +277,7 @@ An array of [account objects](objects.md#keyringaccount) handled by the Snap.
 
 ```json
 {
-    "method": "keyring_listAccounts"
+  "method": "keyring_listAccounts"
 }
 ```
 
@@ -288,31 +286,31 @@ An array of [account objects](objects.md#keyringaccount) handled by the Snap.
 
 ```json
 [
-    {
-        "address": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
-        "id": "091bbc2e-6625-44d0-ac5c-658670ca649a",
-        "methods": [
-            "eth_sign",
-            "eth_signTransaction",
-            "eth_signTypedData_v4",
-            "personal_sign"
-        ],
-        "options": {
-            "signerCount": 5,
-            "threshold": 3
-        },
-        "type": "eip155:eoa"
+  {
+    "address": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
+    "id": "091bbc2e-6625-44d0-ac5c-658670ca649a",
+    "methods": [
+      "eth_sign",
+      "eth_signTransaction",
+      "eth_signTypedData_v4",
+      "personal_sign"
+    ],
+    "options": {
+      "signerCount": 5,
+      "threshold": 3
     },
-    {
-        "address": "0x84674cffb6146d19b986fc88ec70a441b570a45b",
-        "id": "17a87b4a-286c-444d-aebb-1fed89021419",
-        "methods": [
-            "eth_prepareUserOperation",
-            "eth_patchUserOperation",
-            "eth_signUserOperation"
-        ],
-        "type": "eip155:erc4337"
-    }
+    "type": "eip155:eoa"
+  },
+  {
+    "address": "0x84674cffb6146d19b986fc88ec70a441b570a45b",
+    "id": "17a87b4a-286c-444d-aebb-1fed89021419",
+    "methods": [
+      "eth_prepareUserOperation",
+      "eth_patchUserOperation",
+      "eth_signUserOperation"
+    ],
+    "type": "eip155:erc4337"
+  }
 ]
 ```
 
@@ -338,22 +336,22 @@ Updates an account.
 
 ```json
 {
-    "method": "keyring_updateAccount",
-    "params": {
-        "address": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
-        "id": "091bbc2e-6625-44d0-ac5c-658670ca649a",
-        "methods": [
-            "eth_sign",
-            "eth_signTransaction",
-            "eth_signTypedData_v4",
-            "personal_sign"
-        ],
-        "options": {
-            "signerCount": 7,
-            "threshold": 4
-        },
-        "type": "eip155:eoa"
-    }
+  "method": "keyring_updateAccount",
+  "params": {
+    "address": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
+    "id": "091bbc2e-6625-44d0-ac5c-658670ca649a",
+    "methods": [
+      "eth_sign",
+      "eth_signTransaction",
+      "eth_signTypedData_v4",
+      "personal_sign"
+    ],
+    "options": {
+      "signerCount": 7,
+      "threshold": 4
+    },
+    "type": "eip155:eoa"
+  }
 }
 ```
 
@@ -393,10 +391,10 @@ An object containing:
 
 ```json
 {
-    "method": "keyring_approveRequest",
-	"params": {
-	    "id": "f84d3a97-b6e1-47ea-8b0c-fd8609efaad4"
-	}
+  "method": "keyring_approveRequest",
+  "params": {
+    "id": "f84d3a97-b6e1-47ea-8b0c-fd8609efaad4"
+  }
 }
 ```
 
@@ -431,10 +429,10 @@ An object containing:
 
 ```json
 {
-    "method": "keyring_getRequest",
-    "params": {
-        "id": "f84d3a97-b6e1-47ea-8b0c-fd8609efaad4"
-    }
+  "method": "keyring_getRequest",
+  "params": {
+    "id": "f84d3a97-b6e1-47ea-8b0c-fd8609efaad4"
+  }
 }
 ```
 
@@ -443,16 +441,16 @@ An object containing:
 
 ```json
 {
-    "address": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
-    "id": "f84d3a97-b6e1-47ea-8b0c-fd8609efaad4",
-    "request": {
-        "method": "personal_sign",
-        "params": [
-            "0x4578616d706c652060706572736f6e616c5f7369676e60206d657373616765",
-            "0xe887f3b50232722e6eb4c1d3a03b34c9b345acd1"
-        ]
-    },
-    "scope": "eip155:1"
+  "address": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
+  "id": "f84d3a97-b6e1-47ea-8b0c-fd8609efaad4",
+  "request": {
+    "method": "personal_sign",
+    "params": [
+      "0x4578616d706c652060706572736f6e616c5f7369676e60206d657373616765",
+      "0xe887f3b50232722e6eb4c1d3a03b34c9b345acd1"
+    ]
+  },
+  "scope": "eip155:1"
 }
 ```
 
@@ -478,7 +476,7 @@ An array of pending [request objects](objects.md#keyringrequest).
 
 ```json
 {
-    "method": "keyring_listRequests"
+  "method": "keyring_listRequests"
 }
 ```
 
@@ -487,37 +485,37 @@ An array of pending [request objects](objects.md#keyringrequest).
 
 ```json
 [
-    {
-        "account": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
-        "id": "f84d3a97-b6e1-47ea-8b0c-fd8609efaad4",
-        "request": {
-            "method": "personal_sign",
-            "params": [
-                "0x4578616d706c652060706572736f6e616c5f7369676e60206d657373616765",
-                "0xe887f3b50232722e6eb4c1d3a03b34c9b345acd1"
-            ]
-        },
-        "scope": "eip155:1"
+  {
+    "account": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
+    "id": "f84d3a97-b6e1-47ea-8b0c-fd8609efaad4",
+    "request": {
+      "method": "personal_sign",
+      "params": [
+        "0x4578616d706c652060706572736f6e616c5f7369676e60206d657373616765",
+        "0xe887f3b50232722e6eb4c1d3a03b34c9b345acd1"
+      ]
     },
-    {
-        "account": "0xe887f3b50232722e6eb4c1d3a03b34c9b345acd1",
-        "id": "f6f302ae-38d7-4b95-ae88-bf2fb7fbee87",
-        "request": {
-            "method": "eth_sendTransaction",
-            "params": [
-                {
-                    "from": "0xe887f3b50232722e6eb4c1d3a03b34c9b345acd1",
-                    "nonce": "0x1",
-                    "gasPrice": "0x10",
-                    "gasLimit": "0x5208",
-                    "to": "0x84674cffb6146d19b986fc88ec70a441b570a45b",
-                    "value": "0x10000",
-                    "data": "0x"
-                }
-            ]
-        },
-        "scope": "eip155:1"
-    }
+    "scope": "eip155:1"
+  },
+  {
+    "account": "0xe887f3b50232722e6eb4c1d3a03b34c9b345acd1",
+    "id": "f6f302ae-38d7-4b95-ae88-bf2fb7fbee87",
+    "request": {
+      "method": "eth_sendTransaction",
+      "params": [
+        {
+          "from": "0xe887f3b50232722e6eb4c1d3a03b34c9b345acd1",
+          "nonce": "0x1",
+          "gasPrice": "0x10",
+          "gasLimit": "0x5208",
+          "to": "0x84674cffb6146d19b986fc88ec70a441b570a45b",
+          "value": "0x10000",
+          "data": "0x"
+        }
+      ]
+    },
+    "scope": "eip155:1"
+  }
 ]
 ```
 
@@ -545,10 +543,10 @@ An object containing:
 
 ```json
 {
-    "method": "keyring_rejectRequest",
-    "params": {
-        "id": "f84d3a97-b6e1-47ea-8b0c-fd8609efaad4"
-    }
+  "method": "keyring_rejectRequest",
+  "params": {
+    "id": "f84d3a97-b6e1-47ea-8b0c-fd8609efaad4"
+  }
 }
 ```
 
@@ -593,19 +591,19 @@ If the request is [asynchronous](../../../features/custom-evm-accounts/index.md#
 
 ```json
 {
-    "method": "keyring_submitRequest",
-    "params": {
-        "address": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
-        "id": "f84d3a97-b6e1-47ea-8b0c-fd8609efaad4",
-        "request": {
-            "method": "personal_sign",
-            "params": [
-                "0x4578616d706c652060706572736f6e616c5f7369676e60206d657373616765",
-                "0xe887f3b50232722e6eb4c1d3a03b34c9b345acd1"
-            ]
-        },
-        "scope": "eip155:1"
-    }
+  "method": "keyring_submitRequest",
+  "params": {
+    "address": "0xd1f5279be4b4dd94133a23dee1b23f5bfc0db1d0",
+    "id": "f84d3a97-b6e1-47ea-8b0c-fd8609efaad4",
+    "request": {
+      "method": "personal_sign",
+      "params": [
+        "0x4578616d706c652060706572736f6e616c5f7369676e60206d657373616765",
+        "0xe887f3b50232722e6eb4c1d3a03b34c9b345acd1"
+      ]
+    },
+    "scope": "eip155:1"
+  }
 }
 ```
 
@@ -614,8 +612,8 @@ If the request is [asynchronous](../../../features/custom-evm-accounts/index.md#
 
 ```json
 {
-    "pending": false,
-    "result": "0x9aef363b17bc18dfbdcb9ed3ce5f9f96788ce84b353d262099e90c4fa0b513a4e21ee47bafa04c0630750e901b62bd4839b45219c191ec6076d6549637cb1beb4c"
+  "pending": false,
+  "result": "0x9aef363b17bc18dfbdcb9ed3ce5f9f96788ce84b353d262099e90c4fa0b513a4e21ee47bafa04c0630750e901b62bd4839b45219c191ec6076d6549637cb1beb4c"
 }
 ```
 

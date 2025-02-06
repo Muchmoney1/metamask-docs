@@ -1,6 +1,6 @@
 ---
 description: See the Jest API and options reference.
-sidebar_position: 7
+sidebar_position: 8
 ---
 
 # Jest API and options
@@ -14,7 +14,7 @@ and [options](#options).
 ### `installSnap`
 
 Installs a Snap in the execution environment.
-We recommend using this function in each test to ensure that it starts with a clean slate.
+We recommend using this function in each test to ensure that it starts with a new Snap installation.
 
 #### Parameters
 
@@ -28,14 +28,14 @@ An object with functions that can be used to interact with the Snap.
 #### Example
 
 ```javascript
-import { installSnap } from '@metamask/snaps-jest';
+import { installSnap } from "@metamask/snaps-jest"
 
-describe('MySnap', () => {
-  it('should do something', async () => {
-    await installSnap(/* optional Snap ID */);
+describe("MySnap", () => {
+  it("should do something", async () => {
+    await installSnap(/* optional Snap ID */)
     // ...
-  });
-});
+  })
+})
 ```
 
 ### `request`
@@ -54,25 +54,24 @@ which can be checked using [Jest matchers](#jest-matchers).
 #### Example
 
 ```javascript
-import { installSnap } from '@metamask/snaps-jest';
+import { installSnap } from "@metamask/snaps-jest"
 
-describe('MySnap', () => {
-  it('should respond to foo with bar', async () => {
-    const { request } = await installSnap(/* optional snap ID */);
+describe("MySnap", () => {
+  it("should respond to foo with bar", async () => {
+    const { request } = await installSnap(/* Optional snap ID */)
     const response = await request({
-      origin: 'http://localhost:8080',
-      method: 'foo',
+      origin: "http://localhost:8080",
+      method: "foo",
       params: [],
-    });
+    })
 
-    /* Check the response using Jest matchers. Since the response
-     * is a standard JSON-RPC response, you can use any standard
-     * Jest matchers to check it, including snapshot matchers. */
-    expect(response).toRespondWith('bar');
-    expect(response).not.toRespondWithError('baz');
-    expect(response).toMatchSnapshot();
-  });
-});
+    /* Check the response using Jest matchers. Since the response is a standard JSON-RPC response,
+     * you can use any standard Jest matchers to check it, including snapshot matchers. */
+    expect(response).toRespondWith("bar")
+    expect(response).not.toRespondWithError("baz")
+    expect(response).toMatchSnapshot()
+  })
+})
 ```
 
 ### `onTransaction`
@@ -106,32 +105,32 @@ An object with the user interface that was shown by the Snap, in the
 #### Example
 
 ```javascript
-import { installSnap } from '@metamask/snaps-jest';
-import { panel, text } from '@metamask/snaps-sdk';
+import { installSnap } from "@metamask/snaps-jest"
+import { panel, text } from "@metamask/snaps-sdk"
 
-describe('MySnap', () => {
-  it('should return insights', async () => {
-    const { onTransaction } = await installSnap(/* optional Snap ID */);
+describe("MySnap", () => {
+  it("should return insights", async () => {
+    const { onTransaction } = await installSnap(/* Optional Snap ID */)
     const response = await onTransaction({
-      value: '0x0',
-      data: '0x',
-      gasLimit: '0x5208',
-      maxFeePerGas: '0x5208',
-      maxPriorityFeePerGas: '0x5208',
-      nonce: '0x0',
-    });
+      value: "0x0",
+      data: "0x",
+      gasLimit: "0x5208",
+      maxFeePerGas: "0x5208",
+      maxPriorityFeePerGas: "0x5208",
+      nonce: "0x0",
+    })
 
-    expect(response).toRender(panel([text('Hello, world!')]));
-  });
-});
+    expect(response).toRender(panel([text("Hello, world!")]))
+  })
+})
 ```
 
 ### `onCronjob`
 
-Runs a cronjob in the Snap.
+Runs a cron job in the Snap.
 The request is normally specified in the Snap manifest file under the
-[`endowment:cronjob`](permissions.md#endowmentcronjob) permission, but this method alows you to
-run cronjobs that are not specified in the manifest as well.
+[`endowment:cronjob`](permissions.md#endowmentcronjob) permission, but this method allows you to
+run cron jobs that are not specified in the manifest as well.
 
 #### Parameters
 
@@ -145,21 +144,21 @@ which can be checked using [Jest matchers](#jest-matchers).
 #### Example
 
 ```javascript
-import { installSnap } from '@metamask/snaps-jest';
+import { installSnap } from "@metamask/snaps-jest"
 
-describe('MySnap', () => {
-  it('should end foo cronjobs with response bar', async () => {
-    const { onCronjob } = await installSnap(/* optional snap ID */);
+describe("MySnap", () => {
+  it("should end foo cron jobs with response bar", async () => {
+    const { onCronjob } = await installSnap(/* Optional snap ID */)
     const response = await onCronjob({
-      method: 'foo',
+      method: "foo",
       params: [],
-    });
+    })
 
-    // Check the response using Jest matchers
-    expect(response).toRespondWith('bar');
-    expect(response).not.toRespondWithError('baz');
-  });
-});
+    // Check the response using Jest matchers.
+    expect(response).toRespondWith("bar")
+    expect(response).not.toRespondWithError("baz")
+  })
+})
 ```
 
 ### `onHomePage`
@@ -170,17 +169,17 @@ takes no arguments, and returns a promise that resolves to the response from the
 entry point.
 
 ```js
-import { installSnap } from '@metamask/snaps-jest';
-import { panel, text } from '@metamask/snaps-sdk';
+import { installSnap } from "@metamask/snaps-jest"
+import { panel, text } from "@metamask/snaps-sdk"
 
-describe('MySnap', () => {
-  it('should render the home page', async () => {
-    const { onHomePage } = await installSnap(/* optional snap ID */);
-    const response = await onHomePage();
+describe("MySnap", () => {
+  it("should render the home page", async () => {
+    const { onHomePage } = await installSnap(/* Optional snap ID */)
+    const response = await onHomePage()
 
-    expect(response).toRender(panel([text('Hello, world!')]));
-  });
-});
+    expect(response).toRender(panel([text("Hello, world!")]))
+  })
+})
 ```
 
 ### `getInterface`
@@ -197,34 +196,33 @@ be used to interact with the user interface.
 #### Example
 
 ```javascript
-import { installSnap } from '@metamask/snaps-jest';
-import { text } from '@metamask/snaps-sdk';
-import { assert } from '@metamask/utils';
+import { installSnap } from "@metamask/snaps-jest"
+import { text } from "@metamask/snaps-sdk"
+import { assert } from "@metamask/utils"
 
-describe('MySnap', () => {
-  it('should render an alert with hello world', async () => {
-    const { request } = await installSnap(/* optional Snap ID */);
+describe("MySnap", () => {
+  it("should render an alert with hello world", async () => {
+    const { request } = await installSnap(/* Optional Snap ID */)
 
     // Note: You cannot resolve the promise yet!
     const response = request({
-      method: 'foo',
-    });
+      method: "foo",
+    })
 
-    const ui = await response.getInterface();
+    const ui = await response.getInterface()
 
-    // This is useful if you're using TypeScript, since it infers the type
-    // of the user interface.
-    assert(ui.type === 'alert');
-    expect(ui).toRender(text('Hello, world!'));
+    // This is useful if you're using TypeScript, since it infers the type of the user interface.
+    assert(ui.type === "alert")
+    expect(ui).toRender(text("Hello, world!"))
 
-    // "Click" the OK button.
-    await ui.ok();
+    // Select the OK button.
+    await ui.ok()
 
     // Now you can resolve the promise.
-    const result = await response;
-    expect(result).toRespondWith('bar');
-  });
-});
+    const result = await response
+    expect(result).toRespondWith("bar")
+  })
+})
 ```
 
 ## Jest matchers
@@ -256,7 +254,8 @@ This server serves the execution environment, simulator, and the Snap bundle dur
 The server options are:
 
 - `enabled` - Enables or disables the built-in HTTP server.
-  Set to `false` to use your own HTTP server, which you can specify when calling [`installSnap`](#installsnap), e.g. `installSnap('local:http://my-server')`.
+  Set to `false` to use your own HTTP server, which you can specify when calling [`installSnap`](#installsnap),
+  for example, `installSnap("local:http://my-server")`.
   The default is `true`.
 - `port` - The port to use for the built-in HTTP server.
   The default is a random available (unprivileged) port.
@@ -267,14 +266,14 @@ The server options are:
 
 #### Example
 
-```javascript
+```javascript title="jest.config.js"
 module.exports = {
-  preset: '@metamask/snaps-jest',
+  preset: "@metamask/snaps-jest",
   testEnvironmentOptions: {
     server: {
       port: 8080,
-      root: '/path/to/snap/files',
+      root: "/path/to/snap/files",
     },
   },
-};
+}
 ```

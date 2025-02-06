@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
+import Heading from "@theme/Heading";
 import styles from "./styles.module.css";
 
 export interface CardItem {
@@ -19,33 +20,24 @@ export default function CardListItem({ item }: CardListItemProps): JSX.Element {
   const cardContent = (
     <>
       {item.title && (
-        <h2 className={clsx(styles.cardTitle)}>
-          {item.icon && (
-            <img src={item.icon} className={styles.cardIcon} />
-          )}
+        <Heading as="h2" className={clsx(styles.cardTitle)}>
+          {item.icon && <img src={item.icon} className={styles.cardIcon} />}
           <span>{item.title}</span>
-        </h2>
+        </Heading>
       )}
-      {item.description && (
-        <p>
-          {item.description}
-        </p>
-      )}
+      {item.description && <p>{item.description}</p>}
     </>
   );
-  
-  const rootClassName = clsx(
-    "card",
-    "padding--lg",
-    styles.cardContainer,
-    {
-      [styles.flaskOnly]: item.flaskOnly,
-    },
-  );
+
+  const rootClassName = clsx("card", "padding--lg", styles.cardContainer, {
+    [styles.flaskOnly]: item.flaskOnly,
+  });
 
   if (item.href) {
     return (
-      <Link className={rootClassName} href={item.href}>{cardContent}</Link>
+      <Link className={rootClassName} href={item.href}>
+        {cardContent}
+      </Link>
     );
   }
 
